@@ -313,7 +313,7 @@ section 2.1 defination of ring:
 				(R,+,0) is a commutative group
 
 			R2(multiply half group)		: 
-				(R,*,1) is a half group (with unit)
+				(R,*,1) is a half group (with unit 1)
 
 			R3(mul distrubution to add)	: 
 				for a,b,c in R:
@@ -424,3 +424,405 @@ defination of complete Ring:
 #======================================================
 
 section 2.4 idea
+
+defination of idea:
+	I is subgroup of Ring R:
+	for a in I:
+		for r in R:
+			a*r in I
+			r*a in I
+
+	def I idea of R 
+
+principal idea:
+	I is idea of commu ring R:
+		I={r*a|r in R} where a in I
+
+	def I principal idea of ring R(noted as I=(a) )
+
+
+idea instance:
+	for int ring (Z,+,*,0,1):
+		nZ={...-2n, -1n, 0, 1n, 2n ...}
+
+	( noted as nZ=(n) )	
+	nZ is idea of Ring Z as well as  principal idea of Ring Z
+
+#=====================================================================
+#
+
+section 2.5 polynomial on Ring (polynomial with coffecient in Ring)
+
+defination:
+	for x in letters:
+		
+		a[i] in Ring R	
+		n in Z
+			
+		def  R[x] ={ f(x)= (0~n)Sigma a[i]*x^i }
+
+		explaination:
+			a[i]*x^i is i-th item where a[i] is coffiecient
+			a[n]*x^n is head item where Order(f(x)) == n
+			if a[n] == 1 :
+				f(x) called prime 1 polynomial
+			exception:
+				0 is a polynomial whose Order(0) is -infinite
+
+
+
+section 2.6 operation of poly on Ring:
+	
+		for x in letters:
+			a[i],b[j] in Ring R	
+			n in Z
+			
+			f(x)= (0~n)Sigma a[i]*x^i
+			g(x)= (0~m)Sigma b[j]*x^j
+
+
+			def f(x) + g(x) == 	 (0~max(m,n)) Sigma ( a[k]+b[k] )*x^k
+
+			def f(x) * g(x) == 	 (0~m)Sigma{(0~n)Sigma( a[i]*b[j] )*x^ i+j }
+
+
+defination of polynomial Ring:
+	first we define poly on Ring
+	second those Rings totally make a Ring
+	
+	(R[x],+,*,0,1):			
+		R[x] polynomial on Ring R (poly with coffiecient in Ring)
+		+, * as defined above
+		0 is the zero poly whose order is -infinite
+		1 is the 1 poly with a int 1
+
+	 	R1 (R[x],+,0) has G1,G2,G3
+	 	R2 (R[x],*,1) has G1,G2
+	 	R3 (mul distrubute over add)  h(x)*(g(x)+f(x)) == h(x)*g(x) + h(x)*f(x)
+
+
+instances of polynomial Ring:
+	(1) Q is rational number field 
+		R is real number field
+
+		Q[x] is rational polynomial ring 
+		R[x] is real number poly ring
+
+	(2) (Z26[x],+mod 26,*mod 26,0,1)  
+
+
+complete Ring:
+		for complete Ring in Rings:
+			Order(f(x)*g(x)) == Order(f(x)) + Order(g(x))
+			Order(f(x)+g(x)) == max(Order(f(x)) , Order(g(x)))
+
+
+
+#=========================================================================
+
+chapter 3 field
+
+section 3.1 defination of field
+	field was defined above in ring extension
+	here is a independent defination of field
+
+	for tuple(F,+,*,0,1):
+		R1 (F,+,0) is a commu group
+		R2 (F*,*,1) is a commu group
+		R3 (mul distru over add) 
+
+	def field (noted as  field (F,+,*,0,1) )
+	
+
+	+, * add and mul on field
+	1 is unit of F
+	0 is zero unit of F
+	a'' (making 0) is addative inverse
+	a"" (making 1) is multiply inverse
+
+	substraction:
+		def - == +(a'')
+
+	division:
+		def / == *(a"")
+
+instances of fields:
+	eg.1 field defined on Q ---- field Q == (Q,+,*,0,1)
+	eg.2 field defined on R ---- field R == (R,+,*,0,1) 
+	eg.3 field defined on C ---- field C == (C,+,*,0,1)
+
+
+Galois filed:
+	finite fields are called Galois field
+		----noted as GF(q) if the filed has q elements
+
+	
+	eg. of Galois field
+	GF(2) defined on F2={0,1}
+	GF(2) == (F2,+ mod 2,* mod 2,0,1) (while more practiced operation is XOR )
+
+
+field basic operation:
+	(1)addative counter-cancel (use add inverse):
+		for a,b,c in field F:
+			if a+c == b+c:
+				a==b
+	
+	(2)multiply counter-cancel (use mul inverse):
+		for a,b,c in field F:
+			if a*c == b*c where c!= 0:
+				a == b		
+
+	(3)inverse of add inverse:
+		for a in field F:
+			-(-a) == a 				
+
+	(4)inveres of mul inverse:
+		for a in field F:
+			(a^-1)^-1 == a where a!=0
+
+	(5)zero unit:
+		for a in field f:
+			a*0 == 0
+
+	(6)field is a complete ring				
+		for a,b in field F:
+			if a*b == 0:
+				a==0 or b==0
+
+	(7) add, mul, add inverse, mul inverse are counter-penetrating 
+
+
+#=============================================
+#
+
+sectioin 3.3 divison with a remainder
+
+	for f(x),g(x) in F[x]:
+		f(x)==q(x)*g(x) + r(x) where Order(r(x)) < Order(g(x))
+
+	def r(x) remainder
+	def g(x) diviser
+	def f(x) devidee
+
+	if r(x)==0:
+		def g(x) factor of f(x) (noted as g(x)|f(x))	
+
+
+defination of common diviser
+	for f(x),g(x),q(x) in F[x]:
+		
+		if q(x)|f(x) and q(x)|g(x):
+			def q(x) common divisor of g(x) and f(x)
+
+		for q(x) in all common divisers:
+			if q(x) has highest Order and is prime 1 poly:
+				def q(x) greatest common diviser GCD (noted as (f(x),g(x)))
+
+		if (f(x),g(x)) == 1:
+			def f(x), g(x) are counter-primed
+
+
+
+defination of common multiple
+	for f(x),g(x),q(x) in F[x]:
+		
+		if f(x)|q(x) and g(x)|q(x):
+			def q(x) common multiple of g(x) and f(x)
+
+		for q(x) in all common divisers:
+			if q(x) has lowest Order and is prime 1 poly:
+				def q(x) smallest common multiple (noted as [f(x),g(x)])
+
+#============================================================
+#
+
+section 3.4 polynomial on field
+
+Euclid theorey on field:
+	for f(x),f(x),q(x),r(x) in F[x]:
+		f(x)==q(x)*g(x) + r(x) where Order(r(x)) < Order(g(x))
+		
+		(f(x),g(x)) == (g(x),r(x))
+
+Euclid algorithm: 
+	----represent GCD as linear combination of themselves
+	for f(x),g(x) in F[x]:
+		f(x),g(x) != 0
+		exist.a(x),b(x):
+			(f(x),g(x)) == a(x)*f(x) + b(x)*g(x)
+
+#===============================================================
+
+section 3.5 reduced polynomial
+	for f(x) in F[x]:
+		if f(x) has only constant factor c or cf(x):
+			def reduced poly f(x) on field F
+
+	eg.1
+
+	 f(x)=x^2 - 2 
+	 	is reduced in rational field Q
+	 	not reduced in real field R 	----(x-root2)(x+root2)		
+
+	eg.2 	
+
+	f(x)=x^2 + 1
+		is reduced in rational field Q
+		is reduced in real field R
+		not reduced in complex field C 	----(x-j)(x+j)
+
+
+
+numeric basic theorey:
+	for f(x) in F[x]:
+		if Order(f(x)) >=1:
+			it must be decomposed
+			the decomposion is unique
+
+root of reduced poly:
+	for a in letters:
+		if f(a) == 0 :
+		def root a of f(x)
+
+#==================================================================
+
+section 3.6 congruence of polynomials:
+
+
+congruence of polynomial:
+
+	for f(x),g(x),m(x) in F[x]:
+		f(x)==q(x)*m(x) + r(x) where Order(r(x)) < Order(m(x))
+		g(x)==p(x)*m(x) + r(x) where Order(r(x)) < Order(m(x))
+
+	def congruence f(x) == g(x) mod m(x)
+	
+
+pre-theorey:
+	if f(x) == g(x) mod m(x):
+		m(x) | f(x) - g(x)
+
+
+operations of congruence:
+	(1) self-congruence: 
+			f(x) == f(x) mod m(x)
+
+	(2)symmetrical:
+			f(x) == g(x) mod m(x) <=> g(x)==f(x) mod m(x) 
+
+	(3)transcendent:
+			f(x) == g(x) mod m(x)
+			g(x) == h(x) mod m(x)
+			==>
+			f(x)==h(x) mod m(x)
+
+	(4)additivity:
+			f(x) == g(x) mod m(x)
+			p(x) == q(x) mod m(x)
+			==>
+			f(x)+p(x) == g(x)+q(x) mod m(x)
+
+	(5)multiply:
+			f(x) == g(x) mod m(x)
+			p(x) == q(x) mod m(x)
+			==>
+			f(x)*p(x) == g(x)*q(x) mod m(x)
+					
+			
+#==============================================================
+#
+
+section 3.7 residue class
+	F[x] are polynomials defined on F:
+	
+	for f(x) in F[x]:
+		for n-th reduced poly g(x) in F[x]:
+			if f(x)/g(x) remain r(x) where Order(r(x))<=Order(g(x))
+
+		def residue {f(x) |having common r(x)} (noted as F[x][p(x)])
+
+	the defined field F has q elements and there will be q^n remainder
+
+#===========================================================
+
+section 3.8 subfield and hyperfield	
+
+	for f(x),g(x) in F[x][p(x)]:
+		def +:
+			f(x)+g(x) == (f(x)+g(x))[p(x)]
+		def *:
+			f(x)*g(x) == (f(x)*g(x))[p(x)]
+			
+	if field F ,which is F[x] defined on, has q elements
+		F[x][p(x)] has q^n elements
+		tuple(F[x][p(x)], +mod p(x), *mod p(x), 0, 1) makes a field GF(q^n)
+
+	F is subfield of F[x][p(x)]
+	F[x][p(x)] is hyperfield of p(x) 
+
+
+
+section 3.10 data array and polynomial:
+	
+	for f(x) in F[x] defined on GF(2):
+		for A data array defined on GF(2):
+			f(x)==a[n-1]x^n-1 ...a[1]x +a[0]
+			A == (a[n-1]...a[1], a[0])
+
+	def map A <-> f(x)
+
+
+#=======================================================
+#
+chapter 4 about information security
+
+section 4.1 introduction
+
+	error correcting code
+	pseudo random sequence
+	classic cipher
+	AES cipher
+	elliptic curve cipher
+
+#===========================================================
+section 4.2 applications in AES
+
+add and mul in AES:
+	AES use reduced modules poly m(x)=x^8 + x^4 + x^3 + x +1 based on GF(2)
+	F[x][m(x)] making GF(2^8)
+	Byte add and mul is poly add&mul mod m(x) based on GF(2)
+
+xtime(t) in AES:
+	def xtime(t):
+		t*f(x) mod m(x)=x^8 + x^4 + x^3 + x + 1
+	
+	----left shift and mod
+
+#============================================================
+section 4.3 elliptic curve cipher introduction:
+	
+
+Weierstrass equation:
+	y^2 + a[1]xy + a[3] y == x^3 + a[3]x^2 + a[4]x +a[6]
+	where a[i] if defined on field K
+   
+basic idea:
+
+	for points in this curve equation:
+		making a Abelian add group:
+			for logrithm problem in this group
+				hard to coumpte the root
+
+
+
+
+
+
+
+
+
+
+
+
+
