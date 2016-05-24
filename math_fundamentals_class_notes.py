@@ -4,7 +4,7 @@ class introduction:
 		(1)large integer discompose:no practical algorithms
 			----computational security
 			----RSA foundation
-		(2)dircret logrithm problems:
+		(2)discret logrithm problems:
 		(3)ECC elliptic curve discret logrithm problems:
 			----forward computation is straight,backward computation is hard
 
@@ -24,7 +24,7 @@ concepts:
 	modern algebra are based on set
 		----things with a common attribute are in a set
 	Two operand operation on set
-		---- SxS->S ,(x,y)->z
+		---- S * S ->S ,(x,y) -> z
 
 group defination:
 	for a tuple of 3 (G,*,1): 
@@ -40,7 +40,7 @@ group defination:
 									exist. 1	
 									1*a == a*1 == a
 
-		G3(inverse law)			: for a in set G:
+		G3(operational inverse)	: for a in set G:
 									exist. a' in G			                                         
 									a*a' == a'*a ==1
 
@@ -104,11 +104,11 @@ section 1.2 instances of group:
 	(3)eg. hill cipher:
 
 		encription:
-			for key M is matrix Lm(Z[26]):
+			for key M in matrix Lm(Z[26]):
 				(y1,y2,y3...ym) = (x1,x2,x3...xm)*M mod 26
 
 		decription:
-			for key M is matrix Lm(Z[26]):
+			for key M in matrix Lm(Z[26]):
 				exist M^-1 
 				(x1,x2,x3...xm) == (y1,y2,y3...ym)* M^-1 mod 26
 
@@ -805,23 +805,116 @@ section 4.3 elliptic curve cipher introduction:
 
 Weierstrass equation:
 	y^2 + a[1]xy + a[3] y == x^3 + a[3]x^2 + a[4]x +a[6]
-	where a[i] if defined on field K
+	where a[i] is defined on field K
    
 basic idea:
 
-	for points in this curve equation:
-		making a Abelian add group:
-			for logrithm problem in this group
-				hard to coumpte the root
+for K in fields:
+	a[1],a[2],a[3],a[4],a[6] in K
+	
+	equation: y^2 + a[1]xy + a[3] y == x^3 + a[2]x^2 + a[4]x +a[6]a
+	
+	delta=-b[2]^2*b[8]-8b[4]^3-27b[6]^2+9b[2]*b[4]*b[6]
+		
+		where:b[2]=a[1]^2+4a[2]
+			  b[4]=a[1]a[3]
+			  b[]
+			  b[]
+
+	for delta!=0 in this curve equation:
+		extract points from K
+			 making set E:{(x,y)|y^2 + a[1]xy + a[3] y == x^3 + a[2]x^2 + a[4]x +a[6]} union {O}
+				where O is a infinite far away poniter
+		j(E)=(b[2]^2 - 24b[4])^3/delta
+
+		making a Abelian add group(proven under this add the set is a commu group):
+			for P,Q in set E:
+				find line L  connecting P,  Q
+				R'' is another point L intersects with the curve
+
+				find kine L''connecting R'',O (? it find the x-Asis mirror ?) 	
+				R is another point L'' intersects with the curve
+			
+			def add(P,Q) == R
 
 
+			there is also a algebra way to compute point R for specific K field:
+				elliptic curve on Real number R
+				elliptic curve on Prime number Fp(p>3)
 
 
+common practice:
+	for k == limited field Fp (where p is a lagre prime):
+		
+		a,b in K
+		equation: y^2== x^3 + a*x^2 + b
+	 	delta == (4a^3+27b^2) mod p != 0
+
+	 	making Ep(a.b)={(x,y)|on the curve} 
+	 		for x in range(0~p-1):
+	 			calculate x^3 + a*x^2 + b 
+	 			if has mod p square root:
+					calculate mod p square root y
+ 					add (x,y) into set
+
+ 		for P,Q in set Ep(a,b):
+			def add(P,Q):
+			P+O=P
+			P=(x,y) ,add inverse -P=(x,-y)
+			2P = P+P = -S where S is intersect of P line with the curve
+			P(x1,y1),Q(x2,y2)
+				P+Q=R(x3,y3)
+				
+				x3=lambda^3-x1-x2 		mod p
+				y3=lambda*(x1-x3)-y1 	mod p
+				
+				where lambda==(y2-y1)/x2-x1 ,	P!=Q
+							==(3x1^2+a)/2y1 ,	P==Q
 
 
+ECC:
+	Fp is a Galois field, p is a prime
+	E is a elliptic curve on Fp
+	P is a point on E ,having Order n
+	D={0,1,2 ... n-1}
+
+	steps:
+		receiver:
+		choose private key d in D through tuple(p,E,P,n)
+		calculate public key Q=dP
+		
+		sender:
+		plaintext M is encode as points on E
+		choose random k in D ,using public key making cipher C=(C1,C2)=(kP,M+kQ)
+
+		reveiver:
+		decripte with private key d, plaintext M == C2-dC1
 
 
+learn to use matlab
 
+#==========================================================================
+#
+chapter 5 number theorem
+
+study object: integer
+
+problems of number theorem:
+	square sum
+	high power sum: fermat theorem
+	prime number inifite:4K+1 form,other form
+	sibling prime:neighboured odds being primes 3,5,7	11,13
+	N^2+1 form prime:5,17,37,101,197,257,401...
+
+
+number theorem and IS:
+	classic cryptography, backpack alogorithm
+	RSA cipher alogorithm
+	EIGamal public key 
+	Rabin public key
+
+
+	
 
 
 
