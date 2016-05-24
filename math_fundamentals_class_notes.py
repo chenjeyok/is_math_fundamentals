@@ -914,8 +914,153 @@ number theorem and IS:
 	Rabin public key
 
 
+section 5.1
+introduction: 
+	on a int Ring, +,-,* are closed operation but / will produce result in real field
+	thus,to define another / on int Ring, we have division with remainder
+
+divison with remainder:
+	for a,b in int Ring:
+			b!=0
+			exist.unique. q,r
+			a=b*q+r, 0<=r<|b|
+
+	def / operator on int Ring
+	def q uncomplete quotient ()	
+	def r min-non-negative remainder
+
+exact division
+	if remainder r==0:
+		def b |a
 	
+	else:	
+		def b!|a
+
+
+section 5.2 successive divison 
+
+successive divison		
+	a =bq1+r1
+	b =r1q2+r2
+	r1=r2q3+r3
+	.
+	.
+	.
+	rn-2=rn-1 *qn   + rn
+	rn-1=rn   *qn+1 + rn+1 ( rn+1 ==0 )
+
+	successive divison and roll back
+
+
+section 5.3 greatest common diviser GCD
+	
+co-prime :
+	(a1,a2,a3,a4...an)=1	
+
+
+GCD with division:
+	if a==qb+r:
+		(a,b)=(b,r)
+
+
+section 5.4 construct of GCD
+
+construct GCD of (a,b) by linear combination of a,b:
+	for a,b in int Ring:
+		a,b!=0
+		exist.u, v
+		au + bv == (a,b)
+
+construct min-common-multiple
+	[a,b] == a*b/(a,b)	
 
 
 
+section 5.5 undetermined equation
+	for x,y in int Ring:
+		a1,a2,n are given
+		a1,a2!=0 	
+		a1*x+a2*y = n 
+	
+	def solution condition (a1,a2)|n	
 
+		steps:
+			find (a1,a2)
+			roll back to make	a1*u  + a2*v  == (a,b)
+			times a rate making a1*up + a2*vp == (a,b)p = n
+
+section 5.6 backpack alogorithm
+
+encription:
+
+	 Public key Pk	(a0,a1,a2,a3...an)
+	 plain text	M 	(m0,m1,m2,m3...mn) on {0,1}
+	 cipher C=Pk*M 	Sigma(ai*mi) (is partial sum of Pk)
+
+decription:
+ 	given pack size C and items a0~an:
+ 		find which items are in pack (mi=1) or not in pack (mi=0)
+
+Two major problems:
+	if {ai} not properly constructed, not easy to decription for receiver
+	if {ai} be hyper-incremental, easy for receiver and attacker to decripte
+
+better ways to be extended
+
+
+section 5.7 congruence
+	for a,b in int Ring:
+		if a==b (mod m)
+
+	def a,b congruence
+
+
+charateristics of congruence:
+	(1) if a==b (mod m):
+			m|a-b
+
+	(2)if a==b (mod m):
+			a^n ==	b^n  (mod m) # power
+			f(a)==	f(b) (mod m) # polynomials
+
+
+	(3)if a==b (mod m):
+		if p==q (mod m):		
+
+			m*a+u*p == n*b+v*q (mod m) 	#linear combination
+			ap==bq (mod m)				#product
+
+	(4)if ac==bc (mod m)
+		if (m,c)==d:
+			a==b (mod m/d)				#canceling
+
+	(5) if a==b (mod mi) for all mi in {mi}:
+			a==b (mod [m1,m2,m3..mn])
+
+	(6)root of congruence equation x==a (mod m)
+			are {x|x=a+km ,k in Z ring}		
+
+1st congruence equation solution
+	
+	for a,b,m in int Ring:
+		a*x == b(mod m)	
+
+	def congruence equation (x)
+	def solution x0 satisfying the equation
+		----different soulution means to be different mod m result, not just diff number
+
+
+solution condition: (a,m)=d && d|b
+		
+		x0 particular solution
+		x==x0 + mt/d  t={0,1,2...d-1} (total d solutions)	
+			if (a,m)=1 ax==1(mod m) has one solution x0 to be inverse of a (mod m)
+
+	steps:
+		(1)	find x0:
+			find (a,m)==d
+			roll back and represent d==ua+vm
+			times a rate and get b == pd == pu*a+pv*m
+			under mod m ,gets b==pu*a mod m
+		x0 == pu mod m
+	
