@@ -1061,6 +1061,243 @@ solution condition: (a,m)=d && d|b
 			find (a,m)==d
 			roll back and represent d==ua+vm
 			times a rate and get b == pd == pu*a+pv*m
-			under mod m ,gets b==pu*a mod m
+			under mod m ,gets b==pu*a (mod m)
 		x0 == pu mod m
+
+		(2) fill in x.
 	
+section 5.9 backpack cipher 2
+
+	receiver:
+		(a0,a1...an)	as hyper pack items
+	
+		choose m:	m>a1+a2+a3...an
+		choose u:	(u,m) =1
+		
+		u,m 			as private key
+		
+		bi=u*ai(mod m) 	
+		(b0,b1...bn) 	as normal pack items ----public key
+
+	sender:
+		M=(m0,m1...mn)	as plaintext
+		S=Sigma(mi*bi)	as cipher
+
+	receiver:
+		solve w: uw==1 mod m
+		calculate (sw)0	min-non-negative remainder of sw mod m
+			sw==(sw)0 (mod m) where 0<(sw)0<m
+
+		transfer normal pack into hyper pack:
+			sw==Sigma(mi*w*bi)==Sigma(mi*u*w*ai)==Sigma(mi*ai) (mod m)	
+
+
+	for attacker: solve items{bi} and S 		----normal backpack
+	for receiver: solve items{ai} and (sw)0		----hyper backpack
+
+
+
+section 5.10 integer unique decomposion
+
+prime charateristics:
+	(1)
+		for p in primes:
+			for a in int:
+				p|a or (a,p)=1
+
+	(2)		
+		for p in primes:
+			if p|ab:
+				p|a or p|b
+
+integer unique decomposion:
+	for a in integer
+		a>1
+		a=p1*p2*p3...pn	
+
+	def standard decomposion a=p1^a1 * p2^a2 ... pn^an
+
+section 5.11 residue system and residue class
+
+definations:
+	(1)
+	for m in int:
+		for r in range(0-m-1)
+			m>0
+			Cr={a|a=r+qm, q in Z}
+
+	def Cr of mod m 
+
+	there are m residue class for each different value of m
+
+	(2)
+	for Cr in all residue class {Cr}
+		extract one number from Cr as ar
+	
+	making a0,a1...am-1
+	
+	def complete residue system
+
+	
+	(3)
+	if ar<m:
+	def min-non-negative residue system	
+
+	(4)
+	if (r,m)==1:
+		Cr is co-primed residue class
+	def co-primed residue clas Cr where (r,m)=1
+
+	(5) 
+	for Cr in co-primed residue class {Cr}
+		extract one number from Cr as ar
+	
+	def reduced residue system
+
+
+section 5.12 Euler function
+	
+Euler function:
+	fai(n)
+	given n 
+	if n==1:
+		fai(1)=1
+	elif n==2:
+		fai(2)=1
+	elif	
+		for i in range(0~n-1):
+			if (i,n)==1: # 0 not co-prime to anything # 1 is co-primed to anything 
+			fai(n)++;
+
+charateristics of Euler function:
+	(1) for p in primes:
+			fai(p)=p-1
+
+	(2) for m in int:
+			a reduced residue system of mod m has fai(m) elements
+
+	(3)if (m1,m2)==1 :
+			fai(m1,m2)=fai(m1)*fai(m2)
+
+	(4)for p in primes:
+			fai(p^l)=p^l-p^(l-1)  					
+
+	combining (3)(4) and int decomposion, any int n, fai(n) is computable
+
+	(5) fai(m)=m Pai*(1-1/pi)	where Pai* is sequence multiply
+
+
+section 5.13 Euler theorem
+
+Euler theorem
+	if (a,m)==1:
+		a^fai(m)  == 1(mod m)x
+		a^fai(m)+1== a(mod m)
+
+
+Fermat theorem (an special occasion of Euler theorem)
+	for p in primes:
+		a^p == a(mod p)
+
+section 5.14 Sunzi theorem
+
+Sunzi theorem
+	congruence equations
+		x==b1 (mod m1)
+		x==b2 (mod m2)
+		.
+		x==bk (mod mk)
+
+	for mi in each-other co-primed int {mi}
+		m = m1*m2*m3...mn 	
+		m = mi*Mi 
+			where Mi is m leave out mi 
+		M'i' *Mi == 1 (mod mi)
+			solve congruence equation x*Mi==1(mod mi)
+	
+	def solution x=M'1'*M1*b1 + M'2'*M2*b2 ... M'n'*Mn*bn(mod m)
+
+		the unique.solution is not really "unique". 
+		its a residue class
+
+
+
+section 5.15 RSA
+
+	receiver:
+		choose large prime p,q
+		calculate n=pq , fai(n)=(p-1)(q-1)	
+
+		choose random e: 1<e<fai(n) and (e,fai(n))==1
+
+		calculate d: de==1(mod fai(n))  
+
+		p,q,fai(n),d as private key
+		n,e 		 as public key
+
+	sender:
+		m 				as plaintext
+		c = m^e(mod n)	as encription (this is calculation not congruence)
+			----fast power algorithm
+
+	receiver:
+		m = c^d(mod n) as decription
+			----fast power algorithm
+
+
+
+section 5.15 prime
+
+prime are infinite
+
+	if primes are finite : p1,p2,p2...pn:
+		let P=p1*p2...pn +1
+		P is not a prime
+		for p in primes p|P
+			p|P-p1*p2...pn
+			p|1
+		contraction
+	
+
+prime counts
+	lim[x->finite] pi(x)/(x/lnx) =1
+	where pi(x) is prime counts
+		  x/lnx as an approximation to pi(x)
+
+section	 5.18
+
+mersens prime
+	a^n-1 is mersense number
+
+	for A in mersense number: 
+		if A=(a^n) -1 is a prime
+			a==2 and n is a prime 
+
+
+section 5.19 prime judgement
+
+prime judegement
+	(1)divison judegement
+		for q in range(1,sqrt(p))
+			if q is a prime:
+				 q !| n
+
+	(2)willson judegement
+		 (p-1)! === -1 (mod p)
+
+	(3)Lehmer judegement
+		p-1 =Pai(pi^ai) as decomposion
+		for pi in p-1 decomposion:
+			ai^((p-1)/pi) != 1 (mod p)
+			ai^(p-1) == 1(mod p)
+
+	(4)Proth judgement
+		p-1=mq 
+			where q is a odd prime and 2q+1 > sqrt(p)
+
+		if a^(p-1) == 1(mod p)
+		   a^m 	!= 1(mod p)
+
+		   	 		
+
+
