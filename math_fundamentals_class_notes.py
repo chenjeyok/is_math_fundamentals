@@ -1040,7 +1040,7 @@ charateristics of congruence:
 	(6)root of congruence equation x==a (mod m)
 			are {x|x=a+km ,k in Z ring}		
 
-1st congruence equation solution
+1st-power congruence equation
 	
 	for a,b,m in int Ring:
 		a*x == b(mod m)	
