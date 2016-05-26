@@ -1143,12 +1143,12 @@ definations:
 	if ar<m:
 	def min-non-negative residue system	
 
-	(4) RRC
+	(4)
 	if (r,m)==1:
-		Cr is co-primed reduced residue class
-	def reduced residue class Cr where (r,m)=1
+		Cr is co-primed residue class
+	def co-primed residue clas Cr where (r,m)=1
 
-	(5) RRS 
+	(5) 
 	for Cr in co-primed residue class {Cr}
 		extract one number from Cr as ar
 	
@@ -1211,7 +1211,7 @@ Sunzi theorem
 	for mi in each-other co-primed int {mi}
 		m = m1*m2*m3...mn 	
 		m = mi*Mi 
-			----where Mi is m leave out mi 
+			where Mi is m leave out mi 
 		M'i' *Mi == 1 (mod mi)
 			solve congruence equation x*Mi==1(mod mi)
 	
